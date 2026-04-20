@@ -9,7 +9,21 @@ const client = new Client({
 });
 
 client.once("ready", () => {
-  console.log("DR|FT BOT ONLINE");
+  console.log(`DR|FT BOT ONLINE: ${client.user.tag}`);
+});
+
+client.on("messageCreate", (message) => {
+  if (message.author.bot) return;
+
+  const msg = message.content.toLowerCase();
+
+  if (msg === "ping") {
+    message.reply("DR|FT signal stable.");
+  }
+
+  if (msg.includes("drift")) {
+    message.reply("the signal is moving…");
+  }
 });
 
 client.login(process.env.TOKEN);
